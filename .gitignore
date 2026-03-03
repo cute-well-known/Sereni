@@ -86,3 +86,7 @@ frontend/.pnp.js
 *.tmp
 *.temp
 .vercel
+-e 
+# Environment files
+*.env
+*.env.*

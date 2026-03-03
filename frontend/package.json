@@ -1,6 +1,7 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "sereni-chatbot",
+  "version": "1.0.0",
+  "homepage": "/sereni-chatbot",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

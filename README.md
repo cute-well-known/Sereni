@@ -84,6 +84,8 @@ cp .env.example .env
 yarn start
 ```
 
+Access at: `http://localhost:3000/sereni-chatbot`
+
 ## Environment Variables
 
 ### Backend (.env)

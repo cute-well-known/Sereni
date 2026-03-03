@@ -50,11 +50,16 @@ server {
     listen 80;
     server_name localhost;
     
-    # Frontend static files
-    location / {
-        root /usr/share/nginx/html;
+    # Frontend static files at /sereni-chatbot
+    location /sereni-chatbot {
+        alias /usr/share/nginx/html;
         index index.html;
-        try_files \$uri \$uri/ /index.html;
+        try_files \$uri \$uri/ /sereni-chatbot/index.html;
+    }
+    
+    # Redirect root to /sereni-chatbot
+    location = / {
+        return 301 /sereni-chatbot;
     }
     
     # Proxy API requests to backend

@@ -1,0 +1,173 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "Sereni",
+      "tagline": "A safe space for your mind.",
+      "tone": "Compassionate, Grounded, Non-Judgmental, Safe",
+      "archetype": "Organic & Earthy (Archetype 1) + Soft Care (Archetype 3)"
+    },
+    "typography": {
+      "font_family": {
+        "headings": "Nunito, sans-serif",
+        "body": "Lato, sans-serif",
+        "monospace": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-4xl md:text-5xl font-extrabold tracking-tight",
+        "h2": "text-3xl md:text-4xl font-bold tracking-tight",
+        "h3": "text-2xl font-semibold",
+        "body_lg": "text-lg leading-relaxed",
+        "body_base": "text-base leading-relaxed",
+        "caption": "text-sm text-muted-foreground"
+      },
+      "imports": [
+        "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lato:wght@400;700&display=swap"
+      ]
+    },
+    "colors": {
+      "palette": {
+        "background": "#FAFAF9",
+        "foreground": "#334155",
+        "primary": {
+          "DEFAULT": "#769F86",
+          "foreground": "#FFFFFF"
+        },
+        "secondary": {
+          "DEFAULT": "#E8B4B8",
+          "foreground": "#4A3B3C"
+        },
+        "muted": {
+          "DEFAULT": "#F0F0EE",
+          "foreground": "#64748B"
+        },
+        "accent": {
+          "DEFAULT": "#E6E6FA",
+          "foreground": "#2D3748"
+        },
+        "crisis": {
+          "DEFAULT": "#F59E0B",
+          "foreground": "#FFFFFF",
+          "background": "#FFFBEB"
+        },
+        "card": {
+          "DEFAULT": "#FFFFFF",
+          "foreground": "#334155"
+        },
+        "border": "#E2E8F0"
+      },
+      "usage": {
+        "primary": "Main buttons, active states, key branding elements (Sage Green)",
+        "secondary": "Supportive buttons, highlights, 'Love/Care' accents (Dusty Pink)",
+        "background": "Global app background (Warm Cream - never pure white)",
+        "crisis": "Use for the 'Get Help' or 'Crisis Mode' UI. Warm Amber, NOT Red.",
+        "text": "Dark Slate/Charcoal. Never pure black."
+      }
+    },
+    "layout": {
+      "spacing": {
+        "container_padding": "p-6 md:p-12 lg:p-16",
+        "section_gap": "gap-8 md:gap-16",
+        "internal_gap": "gap-4"
+      },
+      "border_radius": {
+        "default": "rounded-2xl",
+        "button": "rounded-full",
+        "card": "rounded-3xl",
+        "input": "rounded-xl"
+      },
+      "shadows": {
+        "card": "shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]",
+        "hover": "shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)]",
+        "soft": "shadow-sm"
+      },
+      "glassmorphism": {
+        "sidebar": "bg-white/60 backdrop-blur-xl border-r border-white/20",
+        "modal": "bg-white/80 backdrop-blur-2xl border border-white/40 shadow-2xl"
+      }
+    },
+    "components": {
+      "buttons": {
+        "primary": "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-3 font-semibold shadow-sm transition-all hover:-translate-y-0.5",
+        "secondary": "bg-secondary/20 text-secondary-foreground hover:bg-secondary/30 rounded-full px-6 py-2 font-medium transition-colors",
+        "crisis": "bg-crisis text-crisis-foreground hover:bg-crisis/90 rounded-full px-6 py-2 font-bold shadow-md animate-pulse-slow"
+      },
+      "cards": {
+        "default": "bg-white rounded-3xl border border-border/40 shadow-card p-6",
+        "interactive": "bg-white rounded-3xl border border-border/40 shadow-card p-6 hover:shadow-hover transition-all duration-300 cursor-pointer"
+      },
+      "inputs": {
+        "default": "bg-white/50 border-border focus:ring-2 focus:ring-primary/20 focus:border-primary rounded-xl px-4 py-3 placeholder:text-muted-foreground/60"
+      },
+      "chat_bubbles": {
+        "user": "bg-primary text-primary-foreground rounded-2xl rounded-tr-sm px-5 py-3 max-w-[80%]",
+        "ai": "bg-white border border-border/50 text-foreground rounded-2xl rounded-tl-sm px-5 py-3 max-w-[80%] shadow-sm"
+      }
+    },
+    "assets": {
+      "images": {
+        "hero_bg": {
+          "url": "https://images.unsplash.com/photo-1759434188758-194121b6169b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwyfHxzZXJlbmUlMjBtaXN0eSUyMGZvcmVzdCUyMG1vcm5pbmclMjBsaWdodHxlbnwwfHx8fDE3NzI1Mzg1MTh8MA&ixlib=rb-4.1.0&q=85",
+          "alt": "Misty serene forest morning",
+          "usage": "Landing page hero background with overlay"
+        },
+        "grounding_focus": {
+          "url": "https://images.unsplash.com/photo-1770357012938-aacdb0b7e85f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzB8MHwxfHNlYXJjaHwxfHxzdGFja2VkJTIwemVuJTIwc3RvbmVzJTIwYmFsYW5jZSUyMHBlYWNlZnVsfGVufDB8fHx8MTc3MjUzODUyMHww&ixlib=rb-4.1.0&q=85",
+          "alt": "Balanced zen stones",
+          "usage": "Grounding exercise modal focal point"
+        },
+        "ambient_bg": {
+          "url": "https://images.unsplash.com/photo-1764513168354-eb789aad16c2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMHNvZnQlMjBmbHVpZCUyMHNoYXBlcyUyMHBhc3RlbCUyMGFlc3RoZXRpY3xlbnwwfHx8fDE3NzI1Mzg1MjF8MA&ixlib=rb-4.1.0&q=85",
+          "alt": "Soft pink abstract fluid shapes",
+          "usage": "Subtle background texture for chat or dashboard"
+        }
+      },
+      "icons": {
+        "library": "lucide-react",
+        "style": "Stroke width 1.5px or 2px, rounded joins",
+        "mappings": {
+          "chat": "MessageCircleHeart",
+          "history": "History",
+          "settings": "Settings2",
+          "crisis": "LifeBuoy",
+          "grounding": "Wind",
+          "send": "SendHorizontal",
+          "menu": "Menu"
+        }
+      }
+    },
+    "motion": {
+      "transitions": "transition-all duration-300 ease-out",
+      "animations": {
+        "fade_in": "animate-in fade-in duration-500",
+        "slide_up": "animate-in slide-in-from-bottom-4 duration-500",
+        "pulse_slow": "animate-pulse duration-[3000ms]"
+      },
+      "guidelines": "Use slow, gentle motions. No rapid flashes. Typing indicators should have a rhythmic, breathing feel."
+    },
+    "accessibility": {
+      "rules": [
+        "Ensure text contrast ratio >= 4.5:1 on all backgrounds.",
+        "Interactive elements must have distinct focus states (ring-2 ring-primary/50).",
+        "Respect prefers-reduced-motion queries.",
+        "Crisis buttons must be identifiable by more than just color (use icon + text)."
+      ]
+    },
+    "specific_instructions": {
+      "landing_page": "Use the 'hero_bg' image with a soft gradient overlay (white/90 to transparent). Center the value proposition. 'Get Started' button should be pill-shaped and large.",
+      "chat_interface": "Two-column layout on desktop. Left sidebar is collapsible glassmorphism. Main chat area has the 'ambient_bg' as a very subtle watermark or background. Typing indicator is crucial.",
+      "crisis_mode": "If risk is high, do NOT turn the screen red. Instead, slide down a 'Support Panel' from the top with the 'crisis' color (Amber) as a border or soft background. Show helpline numbers clearly.",
+      "grounding_modal": "A full-screen or large modal overlay. Use the 'grounding_focus' image. Guide the user through 5-4-3-2-1 with large text and 'Next' buttons. Don't auto-advance too fast."
+    }
+  },
+  "universal_guidelines": {
+    "themes": "Light theme preferred for this therapeutic context. Dark mode should be 'Dim' (slate/grey) not 'Black'.",
+    "components_path": "/app/frontend/src/components/ui",
+    "toast_library": "sonner",
+    "general_rules": [
+      "Avoid 'AI Slop' - generic, soulless designs.",
+      "Use proper spacing (p-8, p-12) to let the content breathe.",
+      "All interactive elements must have data-testid attributes.",
+      "Do not use native HTML select/date inputs; use Shadcn equivalents."
+    ]
+  }
+}

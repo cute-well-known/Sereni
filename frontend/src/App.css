@@ -1,34 +1,83 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
+/* Sereni App Styles */
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #0f0f10;
+.App {
     min-height: 100vh;
+}
+
+/* Override defaults */
+.App-header {
+    min-height: auto;
+    background: transparent;
+}
+
+/* Chat specific styles */
+.chat-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    height: 100vh;
 }
 
-.App-link {
-    color: #61dafb;
+/* Smooth scrolling */
+.scroll-smooth {
+    scroll-behavior: smooth;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
+/* Message animations */
+.message-enter {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.message-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+/* Input focus glow */
+.input-glow:focus {
+    box-shadow: 0 0 0 3px rgba(118, 159, 134, 0.2);
+}
+
+/* Button hover effects */
+.btn-hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar transition */
+.sidebar-transition {
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+/* Crisis panel styles */
+.crisis-panel {
+    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+}
+
+/* Custom selection color */
+::selection {
+    background: rgba(118, 159, 134, 0.3);
+    color: inherit;
+}
+
+/* Focus visible styles */
+:focus-visible {
+    outline: 2px solid hsl(145 25% 55%);
+    outline-offset: 2px;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

@@ -12,7 +12,7 @@ import uuid
 from datetime import datetime, timezone, timedelta
 import bcrypt
 import jwt
-from openai import OpenAI
+from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -22,8 +22,8 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# OpenAI client
-openai_client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+# Emergent LLM Key
+EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY')
 
 # JWT Config
 JWT_SECRET = os.environ.get('JWT_SECRET', 'sereni_secret')
@@ -333,27 +333,33 @@ async def send_message(message_data: MessageCreate, current_user: dict = Depends
         {"_id": 0}
     ).sort("timestamp", 1).to_list(20)
     
-    # Build messages for OpenAI
+    # Build context string for LLM
     system_prompt = get_system_prompt(risk_level)
-    openai_messages = [{"role": "system", "content": system_prompt}]
     
+    # Build conversation context
+    context_messages = []
     for msg in history[-10:]:  # Last 10 messages for context
-        openai_messages.append({
-            "role": msg["role"],
-            "content": msg["content"]
-        })
+        role_prefix = "User" if msg["role"] == "user" else "Sereni"
+        context_messages.append(f"{role_prefix}: {msg['content']}")
     
-    # Get AI response
+    conversation_context = "\n".join(context_messages) if context_messages else ""
+    
+    # Create full prompt with context
+    full_prompt = f"{system_prompt}\n\nConversation so far:\n{conversation_context}"
+    
+    # Get AI response using Emergent integrations
     try:
-        response = openai_client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=openai_messages,
-            temperature=0.8,
-            max_tokens=500
-        )
-        ai_content = response.choices[0].message.content
+        chat = LlmChat(
+            api_key=EMERGENT_LLM_KEY,
+            session_id=f"sereni-{conversation_id}",
+            system_message=full_prompt
+        ).with_model("openai", "gpt-4o-mini")
+        
+        user_msg = UserMessage(text=message_data.content)
+        ai_content = await chat.send_message(user_msg)
+        
     except Exception as e:
-        logger.error(f"OpenAI API error: {e}")
+        logger.error(f"LLM API error: {e}")
         ai_content = "I'm here for you. I'm experiencing a brief moment of difficulty connecting, but please know that your feelings matter and you're not alone. Would you like to try sharing again?"
     
     # Save AI message

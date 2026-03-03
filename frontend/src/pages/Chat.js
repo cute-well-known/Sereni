@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { ScrollArea } from '../components/ui/scroll-area';
-import { Sheet, SheetContent, SheetTrigger } from '../components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '../components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../components/ui/dialog';
 import { 
   MessageCircleHeart, 
@@ -384,7 +384,7 @@ const Chat = () => {
     );
   }
 
-  const Sidebar = () => (
+  const Sidebar = ({ onAction }) => (
     <div className="h-full flex flex-col">
       {/* Header */}
       <div className="p-4 border-b border-border/40">
@@ -393,7 +393,10 @@ const Chat = () => {
           <span className="font-heading font-bold text-lg">Sereni</span>
         </div>
         <Button
-          onClick={startNewConversation}
+          onClick={() => {
+            startNewConversation();
+            if (onAction) onAction();
+          }}
           className="w-full rounded-full justify-center gap-2"
           data-testid="new-chat-btn"
         >
@@ -415,7 +418,10 @@ const Chat = () => {
                 key={conv.id}
                 conversation={conv}
                 isActive={conv.id === currentConversationId}
-                onClick={() => loadConversation(conv.id)}
+                onClick={() => {
+                  loadConversation(conv.id);
+                  if (onAction) onAction();
+                }}
                 onDelete={deleteConversation}
               />
             ))
@@ -428,7 +434,10 @@ const Chat = () => {
         <Button
           variant="ghost"
           className="w-full justify-start gap-2 rounded-xl text-muted-foreground hover:text-foreground"
-          onClick={() => setShowGrounding(true)}
+          onClick={() => {
+            if (onAction) onAction();
+            setTimeout(() => setShowGrounding(true), 100);
+          }}
           data-testid="grounding-btn"
         >
           <Wind className="w-4 h-4" />
@@ -437,7 +446,10 @@ const Chat = () => {
         <Button
           variant="ghost"
           className="w-full justify-start gap-2 rounded-xl text-muted-foreground hover:text-foreground"
-          onClick={() => setShowCrisisPanel(true)}
+          onClick={() => {
+            if (onAction) onAction();
+            setTimeout(() => setShowCrisisPanel(true), 100);
+          }}
           data-testid="get-support-btn"
         >
           <LifeBuoy className="w-4 h-4" />
@@ -450,7 +462,10 @@ const Chat = () => {
               variant="ghost"
               size="icon"
               className="h-8 w-8"
-              onClick={handleLogout}
+              onClick={() => {
+                if (onAction) onAction();
+                handleLogout();
+              }}
               data-testid="logout-btn"
             >
               <LogOut className="w-4 h-4" />
@@ -471,7 +486,10 @@ const Chat = () => {
       {/* Mobile Sidebar */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="w-72 p-0 glass">
-          <Sidebar />
+          <SheetHeader className="sr-only">
+            <SheetTitle>Navigation Menu</SheetTitle>
+          </SheetHeader>
+          <Sidebar onAction={() => setSidebarOpen(false)} />
         </SheetContent>
       </Sheet>
 
